@@ -1,0 +1,641 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html><head></head><body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<main>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput">
+<p>Import relevant packages here.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&#160;[33]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">math</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput">
+<p>Load the data and verify it is loaded correctly.</p>
+<ul>
+<li>Print it (head, tail, or specific rows, choose a sensible number of rows).</li>
+<li>Compare it to the source file.</li>
+<ul>
+</ul></ul></div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&#160;[9]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;cf_data.csv&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">tail</span><span class="p">())</span>
+<span class="n">data</span><span class="o">.</span><span class="n">loc</span><span class="p">[[</span><span class="mi">480</span><span class="p">],:]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output">
+<pre>         dv        s         a
+0 -0.743240  53.5427  1.242570
+1 -0.557230  53.6120  1.777920
+2 -0.454769  53.6541  0.544107
+3 -0.525396  53.7030 -0.294755
+4 -0.601285  53.7592 -0.290961
+            dv        s         a
+73903  5.19874  116.139 -0.795081
+73904  5.10428  115.627 -0.314263
+73905  5.13764  115.118  0.232283
+73906  5.15348  114.599  0.262078
+73907  5.25868  113.112 -0.612440
+</pre>
+</div>
+</div>
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[9]:</div>
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult">
+<div>
+
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>dv</th>
+<th>s</th>
+<th>a</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>480</th>
+<td>-0.888488</td>
+<td>53.4638</td>
+<td>-0.251128</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput">
+<p>In the ensuing, you will use <code>numpy</code>.</p>
+<p>Let&#39;s create a grid for the values to plot. But first create <b>two arrays named <code>dv</code> and <code>s</code></b> using <code>numpy.linspace</code> that hold the grid values at the relevant indices in their respective dimension of the grid.</p>
+<p>Create a <b>grid named <code>a</code></b> with zeros using <code>numpy.zeros</code> in to which calculated acceleration values can be stored.<br/>
+<br/>
+Let the grid span:<br/></p>
+<ul>
+<li>Speed difference <code>dv</code> [m/s]
+        <ul>
+<li>From -10 till 10</li>
+<li>With 41 evenly spaced values</li>
+</ul>
+</li>
+<li>Headway <code>s</code> [m]
+        <ul>
+<li>From 0 till 200</li>
+<li>With 21 evenly spaced values</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&#160;[10]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">dv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">41</span><span class="p">)</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">21</span><span class="p">)</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">dv</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output">
+<pre>dv array: [-10.   -9.5  -9.   -8.5  -8.   -7.5  -7.   -6.5  -6.   -5.5  -5.   -4.5
+  -4.   -3.5  -3.   -2.5  -2.   -1.5  -1.   -0.5   0.    0.5   1.    1.5
+   2.    2.5   3.    3.5   4.    4.5   5.    5.5   6.    6.5   7.    7.5
+   8.    8.5   9.    9.5  10. ]
+s array: [  0.  10.  20.  30.  40.  50.  60.  70.  80.  90. 100. 110. 120. 130.
+ 140. 150. 160. 170. 180. 190. 200.]
+Grid a shape: (21, 41)
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput">
+<p>Create from the imported data 3 separate <code>numpy</code> arrays for each column <code>dv</code>, <code>s</code> and <code>a</code>. (We do this for speed reasons later.)</p>
+<ul>
+<li>Make sure to name them differently from the arrays that belong to the grid as above.</li>
+<li>You can access the data of each column in a <code>DataFrame</code> using <code>data.xxx</code> where <code>xxx</code> is the column name (not as a string).</li>
+<li>Use the method <code>to_numpy()</code> to convert a column to a <code>numpy</code> array.</li>
+</ul>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&#160;[43]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">DV</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">dv</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+<span class="n">S</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">s</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">a</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output">
+<pre>dv array: [-0.74324  -0.55723  -0.454769 ...  5.13764   5.15348   5.25868 ]
+s array: [ 53.5427  53.612   53.6541 ... 115.118  114.599  113.112 ]
+a array: [ 1.24257   1.77792   0.544107 ...  0.232283  0.262078 -0.61244 ]
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput">
+<p>Create an algorithm that calculates all the acceleration values and stores them in the grid. The algorithm is described visually in the last part of the lecture. At each grid point, it calculates a weighted mean of all measurements. The weights are given by an exponential function, based on the &#39;distance&#39; between the grid point, and the measurement values of <code>dv</code> and <code>s</code>. To get you started, how many <code>for</code>-loops do you need?<br/>
+<br/>
+For this you will need <code>math</code>.<br/>
+Use an <i>upsilon</i> of 1.5m/s and a <i>sigma</i> of 30m.<br/>
+<br/>
+<b>Warning:</b> This calculation may take some time. So:</p>
+<ul>
+<li>Print a line for each iteration of the outer-most <code>for</code>-loop that shows you the progress.</li>
+<li>Test you code by running it only on the first 50 measurements of the data.</li>
+</ul>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&#160;[46]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">upsilon</span> <span class="o">=</span> <span class="mf">1.5</span>  
+<span class="n">sigma</span> <span class="o">=</span> <span class="mi">30</span>  
+
+<span class="n">dv_grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">41</span><span class="p">)</span>  
+<span class="n">s_grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">21</span><span class="p">)</span>  
+<span class="n">a_grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">s_grid</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">dv_grid</span><span class="p">)))</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">s_grid_val</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">s_grid</span><span class="p">):</span>
+ 
+    <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">dv_grid_val</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">dv_grid</span><span class="p">):</span>
+        
+        <span class="n">weights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span>
+            <span class="o">-</span> <span class="p">((</span><span class="n">dv_grid_val</span> <span class="o">-</span> <span class="n">DV</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">upsilon</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>  
+            <span class="o">-</span> <span class="p">((</span><span class="n">s_grid_val</span> <span class="o">-</span> <span class="n">S</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">sigma</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>  
+        <span class="p">)</span>
+        
+        <span class="n">weighted_sum</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">weights</span> <span class="o">*</span> <span class="n">A</span><span class="p">)</span>  
+        <span class="n">total_weight</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">weights</span><span class="p">)</span>
+    
+        <span class="k">if</span> <span class="n">total_weight</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">a_grid</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">weighted_sum</span> <span class="o">/</span> <span class="n">total_weight</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">a_grid</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>  
+
+<span class="nb">print</span><span class="p">(</span><span class="n">a_grid</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output">
+<pre>[[ 1.17666453e+00  1.12640108e+00  1.06621799e+00  9.99496743e-01
+   9.32623902e-01  8.71172652e-01  8.16442246e-01  7.65906802e-01
+   7.15796251e-01  6.62922393e-01  6.05298640e-01  5.42197634e-01
+   4.74013198e-01  4.01963636e-01  3.27647309e-01  2.52566039e-01
+   1.77767956e-01  1.03689925e-01  3.01830993e-02 -4.33465207e-02
+  -1.17751100e-01 -1.93950049e-01 -2.72747976e-01 -3.54654098e-01
+  -4.39692085e-01 -5.27207027e-01 -6.15716969e-01 -7.02907783e-01
+  -7.85889613e-01 -8.61757133e-01 -9.28310797e-01 -9.84618053e-01
+  -1.03110465e+00 -1.06910927e+00 -1.10014457e+00 -1.12529692e+00
+  -1.14519595e+00 -1.16076278e+00 -1.17446848e+00 -1.19124091e+00
+  -1.21779947e+00]
+ [ 1.18845505e+00  1.14081996e+00  1.08258633e+00  1.01640836e+00
+   9.48290253e-01  8.84283885e-01  8.26770160e-01  7.74166032e-01
+   7.23138880e-01  6.70516080e-01  6.14080799e-01  5.52748691e-01
+   4.86521919e-01  4.16286242e-01  3.43437412e-01  2.69418007e-01
+   1.95319447e-01  1.21665132e-01  4.83906571e-02 -2.50370790e-02
+  -9.94365816e-02 -1.75716067e-01 -2.54683821e-01 -3.36858677e-01
+  -4.22269196e-01 -5.10249331e-01 -5.99283608e-01 -6.87010163e-01
+  -7.70504762e-01 -8.46875526e-01 -9.13996628e-01 -9.71040722e-01
+  -1.01851508e+00 -1.05777106e+00 -1.09025278e+00 -1.11691410e+00
+  -1.13822411e+00 -1.15495921e+00 -1.16947907e+00 -1.18654644e+00
+  -1.21243260e+00]
+ [ 1.19028843e+00  1.14561035e+00  1.09019963e+00  1.02601479e+00
+   9.58407729e-01  8.93437735e-01  8.34240150e-01  7.80157019e-01
+   7.28459138e-01  6.76176424e-01  6.20998918e-01  5.61561055e-01
+   4.97494713e-01  4.29335761e-01  3.58244468e-01  2.85577504e-01
+   2.12459055e-01  1.39501945e-01  6.67344615e-02 -6.30870762e-03
+  -8.04101908e-02 -1.56470222e-01 -2.35308672e-01 -3.17464649e-01
+  -4.02981649e-01 -4.91187424e-01 -5.80529098e-01 -6.68584418e-01
+  -7.52378435e-01 -8.29019604e-01 -8.96449435e-01 -9.53944770e-01
+  -1.00209542e+00 -1.04226440e+00 -1.07581780e+00 -1.10355281e+00
+  -1.12574143e+00 -1.14298542e+00 -1.15753708e+00 -1.17404840e+00
+  -1.19846243e+00]
+ [ 1.17728489e+00  1.13666918e+00  1.08576880e+00  1.02581532e+00
+   9.61193885e-01  8.97468959e-01  8.38164340e-01  7.83506304e-01
+   7.31550033e-01  6.79754307e-01  6.25895926e-01  5.68440532e-01
+   5.06698865e-01  4.40856531e-01  3.71811122e-01  3.00804249e-01
+   2.28976887e-01  1.57029683e-01  8.50895469e-02  1.27651218e-02
+  -6.06883151e-02 -1.36166632e-01 -2.14510087e-01 -2.96289911e-01
+  -3.81575526e-01 -4.69693625e-01 -5.59049587e-01 -6.47147999e-01
+  -7.30948425e-01 -8.07550067e-01 -8.74959571e-01 -9.32560214e-01
+  -9.81026567e-01 -1.02173003e+00 -1.05594246e+00 -1.08427078e+00
+  -1.10675025e+00 -1.12379371e+00 -1.13758921e+00 -1.15278315e+00
+  -1.17514870e+00]
+ [ 1.14233991e+00  1.10835980e+00  1.06503912e+00  1.01273899e+00
+   9.54515421e-01  8.94960448e-01  8.37653062e-01  7.83679162e-01
+   7.32081546e-01  6.81009563e-01  6.28545686e-01  5.73135072e-01
+   5.13846556e-01  4.50536481e-01  3.83822605e-01  3.14802178e-01
+   2.44611599e-01  1.74032174e-01  1.03292103e-01  3.20792093e-02
+  -4.03109139e-02 -1.14772624e-01 -1.92174693e-01 -2.73131749e-01
+  -3.57749439e-01 -4.45357778e-01 -5.34316005e-01 -6.22045019e-01
+  -7.05429798e-01 -7.81559025e-01 -8.48510796e-01 -9.05783457e-01
+  -9.54141194e-01 -9.94957886e-01 -1.02938693e+00 -1.05780363e+00
+  -1.07997162e+00 -1.09612761e+00 -1.10847977e+00 -1.12180528e+00
+  -1.14186570e+00]
+ [ 1.07647743e+00  1.05385647e+00  1.02305324e+00  9.83301693e-01
+   9.35951873e-01  8.84235360e-01  8.31555346e-01  7.79889476e-01
+   7.29500164e-01  6.79514908e-01  6.28569071e-01  5.75265029e-01
+   5.18537968e-01  4.57960677e-01  3.93868872e-01  3.27189334e-01
+   2.59027626e-01  1.90231652e-01  1.21128862e-01  5.14900741e-02
+  -1.93452108e-02 -9.22700017e-02 -1.68186242e-01 -2.47759371e-01
+  -3.31137843e-01 -4.17656962e-01 -5.05626560e-01 -5.92380373e-01
+  -6.74733180e-01 -7.49778896e-01 -8.15689339e-01 -8.72097921e-01
+  -9.19868052e-01 -9.60367268e-01 -9.94597888e-01 -1.02265747e+00
+  -1.04401378e+00 -1.05876612e+00 -1.06924666e+00 -1.08048927e+00
+  -1.09836301e+00]
+ [ 9.71747106e-01  9.67090883e-01  9.55308102e-01  9.34200914e-01
+   9.03054319e-01  8.63437115e-01  8.18441662e-01  7.71026186e-01
+   7.22926026e-01  6.74543603e-01  6.25324670e-01  5.74223002e-01
+   5.20171998e-01  4.62532829e-01  4.01376969e-01  3.37441905e-01
+   2.71771839e-01  2.05258123e-01  1.38317967e-01  7.08061253e-02
+   2.11129846e-03 -6.86531390e-02 -1.42419300e-01 -2.19901758e-01
+  -3.01289577e-01 -3.85920225e-01 -4.72054165e-01 -5.56949966e-01
+  -6.37383231e-01 -7.10499990e-01 -7.74615320e-01 -8.29535757e-01
+  -8.76240412e-01 -9.16077796e-01 -9.49856835e-01 -9.77345485e-01
+  -9.97695472e-01 -1.01090780e+00 -1.01951341e+00 -1.02886970e+00
+  -1.04501736e+00]
+ [ 8.28021562e-01  8.47086596e-01  8.60227726e-01  8.63559007e-01
+   8.53902071e-01  8.30758076e-01  7.96682171e-01  7.55651986e-01
+   7.11102875e-01  6.64989773e-01  6.17813173e-01  5.69071375e-01
+   5.17842593e-01  4.63374364e-01  4.05516758e-01  3.44811137e-01
+   2.82205908e-01  2.18599757e-01  1.54477476e-01  8.97720226e-02
+   2.39273274e-02 -4.39244569e-02 -1.14729923e-01 -1.89234903e-01
+  -2.67650844e-01 -3.49305150e-01 -4.32415600e-01 -5.14205725e-01
+  -5.91488983e-01 -6.61561247e-01 -7.22971994e-01 -7.75763657e-01
+  -8.21054234e-01 -8.60152106e-01 -8.93613358e-01 -9.20805449e-01
+  -9.40518747e-01 -9.52643211e-01 -9.59896006e-01 -9.67938979e-01
+  -9.83016285e-01]
+ [ 6.60086524e-01  7.02914139e-01  7.42272891e-01  7.72632293e-01
+   7.87929192e-01  7.84820337e-01  7.64640241e-01  7.32115935e-01
+   6.92461242e-01  6.49391092e-01  6.04665119e-01  5.58501269e-01
+   5.10275520e-01  4.59245806e-01  4.05114237e-01  3.48236726e-01
+   2.89428041e-01  2.29539698e-01  1.69080819e-01  1.08042590e-01
+   4.59265518e-02 -1.80969351e-02 -8.49568163e-02 -1.55389048e-01
+  -2.29585112e-01 -3.06836427e-01 -3.85335739e-01 -4.62355300e-01
+  -5.34891860e-01 -6.00560406e-01 -6.58289685e-01 -7.08447318e-01
+  -7.52313419e-01 -7.91113775e-01 -8.25055392e-01 -8.52984188e-01
+  -8.73210959e-01 -8.85394761e-01 -8.92306494e-01 -8.99822218e-01
+  -9.14439031e-01]
+ [ 4.94665485e-01  5.53461925e-01  6.12976392e-01  6.66970696e-01
+   7.06692284e-01  7.25070250e-01  7.20890548e-01  6.98726453e-01
+   6.65283739e-01  6.26080146e-01  5.84265392e-01  5.40923324e-01
+   4.95884898e-01  4.48571421e-01  3.98647423e-01  3.46318357e-01
+   2.92227003e-01  2.37101308e-01  1.81401637e-01  1.25132525e-01
+   6.78424668e-02  8.76023719e-03 -5.29791821e-02 -1.18035898e-01
+  -1.86511275e-01 -2.57619312e-01 -3.29560740e-01 -3.99794975e-01
+  -4.65727928e-01 -5.25540432e-01 -5.78736092e-01 -6.26112881e-01
+  -6.69119696e-01 -7.08813567e-01 -7.44891145e-01 -7.75472603e-01
+  -7.98166922e-01 -8.12162373e-01 -8.20050906e-01 -8.27801203e-01
+  -8.42261404e-01]
+ [ 3.54580995e-01  4.18371953e-01  4.87047891e-01  5.55490097e-01
+   6.13963932e-01  6.51909339e-01  6.64231113e-01  6.53757511e-01
+   6.27776427e-01  5.93320446e-01  5.54928055e-01  5.14658566e-01
+   4.72964657e-01  4.29617323e-01  3.84394133e-01  3.37415367e-01
+   2.89121838e-01  2.40026772e-01  1.90439567e-01  1.40301506e-01
+   8.91719696e-02  3.63441130e-02 -1.89379580e-02 -7.71814107e-02
+  -1.38310754e-01 -2.01413469e-01 -2.64748204e-01 -3.26143624e-01
+  -3.83693502e-01 -4.36430305e-01 -4.84642003e-01 -5.29649876e-01
+  -5.73040768e-01 -6.15557558e-01 -6.56155919e-01 -6.91959900e-01
+  -7.19593212e-01 -7.37474253e-01 -7.47734382e-01 -7.56286045e-01
+  -7.70425622e-01]
+ [ 2.45682464e-01  3.07061559e-01  3.75086901e-01  4.47015238e-01
+   5.14700946e-01  5.66402153e-01  5.93327077e-01  5.94992003e-01
+   5.77660652e-01  5.49027605e-01  5.14761488e-01  4.77936865e-01
+   4.39799559e-01  4.00681129e-01  3.60649972e-01  3.19833304e-01
+   2.78463166e-01  2.36759357e-01  1.94774231e-01  1.52289474e-01
+   1.08808965e-01  6.36619256e-02  1.62144519e-02 -3.38370394e-02
+  -8.61735325e-02 -1.39722556e-01 -1.92858823e-01 -2.43949464e-01
+  -2.92009541e-01 -3.37141743e-01 -3.80562801e-01 -4.24158510e-01
+  -4.69580694e-01 -5.17086027e-01 -5.64671591e-01 -6.08259066e-01
+  -6.43286842e-01 -6.67150615e-01 -6.81205526e-01 -6.91033351e-01
+  -7.04299051e-01]
+ [ 1.58079838e-01  2.15644995e-01  2.78629444e-01  3.46250126e-01
+   4.13300472e-01  4.70019311e-01  5.06535146e-01  5.19065291e-01
+   5.11177332e-01  4.89713531e-01  4.60744146e-01  4.28199560e-01
+   3.94219837e-01  3.59869896e-01  3.25659882e-01  2.91815688e-01
+   2.58388991e-01  2.25283703e-01  1.92239526e-01  1.58806340e-01
+   1.24356661e-01  8.81869721e-02  4.97341149e-02  8.87166917e-03
+  -3.38457331e-02 -7.71993849e-02 -1.19721609e-01 -1.60377097e-01
+  -1.99145158e-01 -2.37208824e-01 -2.76695597e-01 -3.20006016e-01
+  -3.68770601e-01 -4.22677183e-01 -4.78764122e-01 -5.31850648e-01
+  -5.76268187e-01 -6.08261348e-01 -6.27985447e-01 -6.40069267e-01
+  -6.51977695e-01]
+ [ 7.48577723e-02  1.31773321e-01  1.91010918e-01  2.52297091e-01
+   3.12583881e-01  3.65560221e-01  4.03737713e-01  4.22615398e-01
+   4.23032447e-01  4.09554291e-01  3.87418208e-01  3.60787648e-01
+   3.32473897e-01  3.04213025e-01  2.76948870e-01  2.51032452e-01
+   2.26392354e-01  2.02685395e-01  1.79391351e-01  1.55844647e-01
+   1.31258279e-01  1.04825066e-01  7.59486897e-02  4.45595499e-02
+   1.13322915e-02 -2.24510015e-02 -5.54884712e-02 -8.72337514e-02
+  -1.18407280e-01 -1.50998257e-01 -1.87794977e-01 -2.31533954e-01
+  -2.83771383e-01 -3.43798999e-01 -4.08161507e-01 -4.71217220e-01
+  -5.26688865e-01 -5.69664650e-01 -5.98388802e-01 -6.15223071e-01
+  -6.25993011e-01]
+ [-1.89432565e-02  4.25838853e-02  1.03108785e-01  1.61448486e-01
+   2.14827064e-01  2.59287096e-01  2.91017312e-01  3.08073519e-01
+   3.11258925e-01  3.03502633e-01  2.88473902e-01  2.69518538e-01
+   2.49222978e-01  2.29343094e-01  2.10858068e-01  1.94089351e-01
+   1.78879882e-01  1.64783649e-01  1.51190802e-01  1.37363812e-01
+   1.22444414e-01  1.05537600e-01  8.59454158e-02  6.35029855e-02
+   3.88016881e-02  1.30142232e-02 -1.27508529e-02 -3.82375062e-02
+  -6.44988453e-02 -9.38126982e-02 -1.29132443e-01 -1.73207013e-01
+  -2.27552542e-01 -2.91615687e-01 -3.62490783e-01 -4.35298580e-01
+  -5.04015044e-01 -5.62460951e-01 -6.05475125e-01 -6.30590322e-01
+  -6.39728108e-01]
+ [-1.26256135e-01 -5.59702028e-02  1.14298262e-02  7.28213932e-02
+   1.23925003e-01  1.60948193e-01  1.82369687e-01  1.89706760e-01
+   1.86726604e-01  1.77737029e-01  1.66193405e-01  1.54280490e-01
+   1.43174413e-01  1.33419789e-01  1.25165243e-01  1.18282166e-01
+   1.12450994e-01  1.07241186e-01  1.02153573e-01  9.66001863e-02
+   8.98607850e-02  8.11121528e-02  6.96098930e-02  5.49919096e-02
+   3.75115905e-02  1.79372209e-02 -2.96093692e-03 -2.50617148e-02
+  -4.92749377e-02 -7.74790546e-02 -1.12108282e-01 -1.55553097e-01
+  -2.09535189e-01 -2.74618771e-01 -3.49901873e-01 -4.32687913e-01
+  -5.17786180e-01 -5.96470256e-01 -6.56654741e-01 -6.87359453e-01
+  -6.86693226e-01]
+ [-2.30958734e-01 -1.52562860e-01 -7.64414348e-02 -8.02202382e-03
+   4.57810683e-02  7.95590933e-02  9.21277252e-02  8.73628634e-02
+   7.26528620e-02  5.57486384e-02  4.18922481e-02  3.29399112e-02
+   2.83847172e-02  2.68503697e-02  2.70344671e-02  2.80101423e-02
+   2.91897325e-02  3.02024542e-02  3.07801938e-02  3.06455439e-02
+   2.93974420e-02  2.64465944e-02  2.10730745e-02  1.26172932e-02
+   7.05283614e-04 -1.46633344e-02 -3.32679337e-02 -5.49671085e-02
+  -7.99446053e-02 -1.08830989e-01 -1.42812140e-01 -1.83780168e-01
+  -2.34355314e-01 -2.97523695e-01 -3.75691062e-01 -4.68797173e-01
+  -5.70973761e-01 -6.66733644e-01 -7.32552116e-01 -7.50736084e-01
+  -7.25219386e-01]
+ [-3.06868312e-01 -2.26010569e-01 -1.45248400e-01 -7.12969446e-02
+  -1.36494042e-02  1.97699280e-02  2.68326909e-02  1.27103496e-02
+  -1.22245913e-02 -3.70938712e-02 -5.49512337e-02 -6.41111727e-02
+  -6.64204266e-02 -6.47931926e-02 -6.16701981e-02 -5.85299699e-02
+  -5.59783074e-02 -5.40498394e-02 -5.25519287e-02 -5.13652891e-02
+  -5.06497193e-02 -5.09435357e-02 -5.31657211e-02 -5.85156198e-02
+  -6.82521638e-02 -8.33586629e-02 -1.04163544e-01 -1.30066053e-01
+  -1.59587661e-01 -1.91006554e-01 -2.23653909e-01 -2.59360075e-01
+  -3.02983409e-01 -3.61256826e-01 -4.39936826e-01 -5.39254091e-01
+  -6.47897329e-01 -7.39868184e-01 -7.84988280e-01 -7.72879658e-01
+  -7.21965777e-01]
+ [-3.37483934e-01 -2.60183947e-01 -1.81825898e-01 -1.08320563e-01
+  -5.01711230e-02 -1.75617479e-02 -1.41008153e-02 -3.38518325e-02
+  -6.41438247e-02 -9.22898532e-02 -1.11128625e-01 -1.19868807e-01
+  -1.21460703e-01 -1.19691863e-01 -1.17565950e-01 -1.16763203e-01
+  -1.17616314e-01 -1.19415612e-01 -1.21100741e-01 -1.22088464e-01
+  -1.22684078e-01 -1.23966251e-01 -1.27553097e-01 -1.35483775e-01
+  -1.50038018e-01 -1.73167169e-01 -2.05403074e-01 -2.44671205e-01
+  -2.86100378e-01 -3.23886149e-01 -3.54926337e-01 -3.82054454e-01
+  -4.14176832e-01 -4.62406812e-01 -5.33609580e-01 -6.23648055e-01
+  -7.13388329e-01 -7.73471644e-01 -7.82421320e-01 -7.44495231e-01
+  -6.84116014e-01]
+ [-3.23075223e-01 -2.52038523e-01 -1.81533976e-01 -1.15163918e-01
+  -6.22564659e-02 -3.38065771e-02 -3.45309866e-02 -5.78867264e-02
+  -8.97050934e-02 -1.17031132e-01 -1.33834309e-01 -1.40560941e-01
+  -1.40793197e-01 -1.38489761e-01 -1.36670867e-01 -1.36962310e-01
+  -1.39449309e-01 -1.42927917e-01 -1.45941687e-01 -1.48114237e-01
+  -1.50527900e-01 -1.55144909e-01 -1.64376775e-01 -1.81170006e-01
+  -2.09056955e-01 -2.51344707e-01 -3.08840228e-01 -3.76803484e-01
+  -4.44100343e-01 -4.97629932e-01 -5.30399463e-01 -5.46994917e-01
+  -5.61635037e-01 -5.89329029e-01 -6.35587772e-01 -6.91615869e-01
+  -7.37924604e-01 -7.54633252e-01 -7.34212303e-01 -6.87037159e-01
+  -6.32459592e-01]
+ [-2.74032625e-01 -2.09206890e-01 -1.48951036e-01 -9.45331199e-02
+  -5.27375812e-02 -3.33850581e-02 -4.08713207e-02 -6.77899070e-02
+  -9.95647526e-02 -1.24530646e-01 -1.38523185e-01 -1.42999128e-01
+  -1.41572601e-01 -1.37764660e-01 -1.34048125e-01 -1.31516835e-01
+  -1.29886174e-01 -1.28139685e-01 -1.25916255e-01 -1.24400722e-01
+  -1.25754014e-01 -1.32284070e-01 -1.46565223e-01 -1.72211401e-01
+  -2.14435189e-01 -2.79232480e-01 -3.69619279e-01 -4.79012788e-01
+  -5.87756825e-01 -6.71232261e-01 -7.15482840e-01 -7.25220964e-01
+  -7.18396373e-01 -7.13048936e-01 -7.15992105e-01 -7.21641789e-01
+  -7.19211695e-01 -7.00609155e-01 -6.65615925e-01 -6.22332047e-01
+  -5.81525123e-01]]
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&#160;[&#160;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput">
+<p>The following code will plot the data for you. Does it make sense when considering:</p>
+<ul>
+<li>Negative (slower than leader) and positive (faster than leader) speed differences?</li>
+<li>Small and large headways?</li>
+</ul>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&#160;[49]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">dv_grid</span><span class="p">,</span> <span class="n">s_grid</span><span class="p">)</span>
+<span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">()</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">axs</span><span class="o">.</span><span class="n">pcolor</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">a_grid</span><span class="p">,</span> <span class="n">shading</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">)</span>
+<span class="n">axs</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Acceleration [m/s/s]&#39;</span><span class="p">)</span>
+<span class="n">axs</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Speed difference [m/s]&#39;</span><span class="p">)</span>
+<span class="n">axs</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Headway [m]&#39;</span><span class="p">)</span>
+<span class="n">axs</span><span class="o">.</span><span class="n">figure</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
+<span class="n">axs</span><span class="o">.</span><span class="n">figure</span><span class="o">.</span><span class="n">set_size_inches</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedImage jp-OutputArea-output">
+<img alt="No description has been provided for this image" src="javascript://"/>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&#160;[&#160;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+
+
+<script type="module" src="https://s.brightspace.com/lib/bsi/2024.9.245/unbundled/mathjax.js"></script><script type="text/javascript">document.addEventListener('DOMContentLoaded', function() {
+						if (document.querySelector('math') || /\$\$|\\\(|\\\[|\\begin{|\\ref{|\\eqref{/.test(document.body.innerHTML)) {
+							document.querySelectorAll('mspace[linebreak="newline"]').forEach(elm => {
+								elm.setAttribute('style', 'display: block; height: 0.5rem;');
+							});
+
+							window.D2L.MathJax.loadMathJax({
+								outputScale: 1.5,
+								renderLatex: true,
+								enableMML3Support: false
+							});
+						}
+					});</script><script type="module" src="https://s.brightspace.com/lib/bsi/2024.9.245/unbundled/prism.js"></script><script type="text/javascript">document.addEventListener('DOMContentLoaded', function() {
+					document.querySelectorAll('.d2l-code').forEach(code => {
+						window.D2L.Prism.formatCodeElement(code);
+					});
+				});</script><script type="module" src="https://s.brightspace.com/lib/bsi/2024.9.245/unbundled/embeds.js"></script><script type="text/javascript">document.addEventListener('DOMContentLoaded', function() {
+					window.D2L.EmbedRenderer.renderEmbeds(document.body);
+				});</script></body></html>
